@@ -9440,6 +9440,10 @@ Current version: 125
 			}
 
 			let truncated_context = concat_gametext(true, "","","",false,true); //no need to truncate if memory is empty
+			
+			// OAI failing if we are sending entire story in the request in case of empty memory, WI and other things.
+			truncated_context = truncated_context.substring(truncated_context.length - max_allowed_characters);
+			
 			truncated_context = truncated_context.replace(/\xA0/g,' '); //replace non breaking space nbsp
 
 			//this is a hack since we dont have a proper tokenizer, but we can estimate 1 token per 3 characters
